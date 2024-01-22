@@ -1,0 +1,11 @@
+name: Tag Release
+on:
+ push:
+   tags:
+     - '*'
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push
+        run: echo "Release Tag!"

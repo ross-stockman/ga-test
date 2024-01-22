@@ -1,4 +1,4 @@
-name: Build Release
+name: Pull Request Staging
 on:
   pull_request:
     branches:

@@ -1,4 +1,4 @@
-name: Build Release
+name: Pull Request Main
 on:
   pull_request:
     branches:
@@ -20,3 +20,10 @@ jobs:
         run: mvn enforcer:enforce -Drules=requireReleaseDeps
       - name: Build
         run: mvn -B package -f pom.xml
+      - name: Create git Tag
+        run: |
+          export version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          git config user.name my-bot-user
+          git config user.email my-bot-user@email.com
+          git tag -a $version -m "$version"
+          git push origin $version
