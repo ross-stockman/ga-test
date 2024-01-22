@@ -1,0 +1,11 @@
+name: Push Staging Branch
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push
+        run: echo "Staging Push!"

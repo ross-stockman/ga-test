@@ -1,5 +1,8 @@
-name: Build
-on: push
+name: Build Release
+on:
+  pull_request:
+    branches:
+      - main
 jobs:
   build_and_test:
     name: Build and Test
@@ -13,5 +16,7 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
+      - name: Enforce No Snapshots
+        run: mvn enforcer:enforce -Drules=requireReleaseDeps
       - name: Build
         run: mvn -B package -f pom.xml

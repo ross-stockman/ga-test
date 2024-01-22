@@ -1,0 +1,11 @@
+name: Push Dev Branch
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push
+        run: echo "Dev Push!"
