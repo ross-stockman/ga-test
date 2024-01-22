@@ -7,5 +7,10 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Push
-        run: echo "Release Tag!"
+      - name: Create git Tag
+        run: |
+          export version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          git config user.name my-bot-user
+          git config user.email my-bot-user@email.com
+          git tag -a $version -m "$version"
+          git push origin $version
